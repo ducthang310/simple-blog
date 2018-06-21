@@ -1,0 +1,79 @@
+// -----------------------------------------------------------------------------------------------
+// Media Query Breakpoints
+// -----------------------------------------------------------------------------------------------
+
+// example @include breakpoint(940) { width:80%; }
+@mixin breakpoint($size) {
+  @media only screen and (max-width: $size + px) { @content; }
+}
+
+// example @include breakpoint(768, 992) { width:80%; }
+@mixin breakpointInRange($sizemin, $sizemax) {
+  @media only screen and (min-width: $sizemin + px) and (max-width: $sizemax + px) { @content; }
+}
+
+// example @include min-breakpoint(940) { width:80%; }
+@mixin min-breakpoint($size) {
+  @media only screen and (min-width: $size + px) { @content; }
+}
+
+// -----------------------------------------------------------------------------------------------
+// Animations
+// -----------------------------------------------------------------------------------------------
+
+// example: @include animation('slide-down 5s 3');
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+// -----------------------------------------------------------------------------------------------
+// Animated link that has a fade-in underline
+// -----------------------------------------------------------------------------------------------
+
+// example: @include animate-link($screenGreen, $gothamMedium, 14);
+@mixin animate-link($color, $font, $fontSize) {
+
+  font-family:$font;
+
+  @include single-transition(border, 0.2s, ease-in-out, 0);
+  text-decoration:none;
+
+  color: $color;
+  border-bottom:1px solid transparent;
+
+  @include rem("font-size", $fontSize);
+
+  &:focus,
+  &:hover {
+    border-color: $color;
+  }
+}
+
+// ----------------------------------------------------------------------
+// Keyframes
+// ----------------------------------------------------------------------
+// example: @include keyframes(slide-down) {0%{ opacity:1; } 90%{ opacity:0; }}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+
