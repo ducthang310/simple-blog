@@ -332,4 +332,23 @@ body {
   font-size: 30px;
 }
 
+.st-code {
+  background-color: #252C3B;
+  padding: 10px;
+  color: #90C56B;
+}
+
+.st-code__line {
+  padding: 5px;
+}
+
+.st-code .tooltip-txt {
+  color: #aaaaaa;
+  margin-left: 15px;
+}
+
+.st-code .normal-txt {
+  color: #ffffff;
+}
+
 /*# sourceMappingURL=app.css.map */
