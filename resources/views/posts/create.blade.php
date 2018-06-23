@@ -2,17 +2,11 @@
 @section('title', 'Create post')
 
 @section('content')
-    <form class="container" method="post" action="{{ route('posts.store') }}">
+    <form class="container post-form" method="post" action="{{ route('posts.store') }}">
         {{ csrf_field() }}
-        <div class="row pc__bar">
-            <h3 class="col-md-6">
-                New post
-            </h3>
-
-            <div class="col-md-6 pd__bar-right">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </div>
+        <h3>
+            New post
+        </h3>
 
         <div class="row">
             @if (Session::has('message'))
@@ -22,12 +16,15 @@
             @endif
 
             <div class="col-md-3 form-group">
+                <label>Title</label>
                 <input type="text" name="title" class="form-control" placeholder="Title" value="{{old('title')}}">
             </div>
             <div class="col-md-12 form-group">
+                <label>Overview <span class="tooltip-txt">(used in post list)</span></label>
                 <textarea name="overview" class="form-control text-area" placeholder="Overview">{{old('overview')}}</textarea>
             </div>
             <div class="col-md-12 pc__content">
+                <label>Content <span class="tooltip-txt">(supports markdown)</span></label>
                 <textarea name="content" class="form-control text-area" id="p-content" placeholder="Type your idea...">{{old('content')}}</textarea>
             </div>
 
@@ -36,6 +33,10 @@
         <div class="pc__preview">
             <h4>Preview content</h4>
             <div id="pc-preview"></div>
+        </div>
+
+        <div class="post-btn">
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
 @endsection

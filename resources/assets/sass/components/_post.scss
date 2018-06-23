@@ -85,11 +85,6 @@
 
 /*------------------------------------------------------------------------------------------------*/
 .pd {
-  &__bar-right {
-    .btn {
-      float: right;
-    }
-  }
 
   &__info {
     color: gray;
@@ -118,9 +113,6 @@
 
 
 .pc {
-  &__bar {
-    margin-bottom: 30px;
-  }
 
   &__preview {
     margin-top: 10px;
@@ -138,13 +130,25 @@
   }
 }
 
+.post-btn {
+  margin-top: 20px;
+}
 
+.post-form {
+  .form-group {
+    margin-top: 10px;
 
+    label {
+      color: gray;
+    }
+  }
+}
 
 @include breakpoint(768) {
   .posts {
 
     &__pagination {
+      margin-top: 20px;
       .pagination {
         justify-content: flex-start;
       }

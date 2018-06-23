@@ -4,15 +4,9 @@
 @section('content')
     <div class="container">
         <div class="row pd__bar">
-            <h3 class="col-md-6">
+            <h3 class="col-md-12">
                 {{$post->title}}
             </h3>
-
-            @if ($isOwn)
-                <div class="col-md-6 pd__bar-right">
-                    <a href="{{route('posts.edit', ['id' => $post->id])}}" class="btn btn-primary">Edit</a>
-                </div>
-            @endif
 
             <div class="col-md-12 pd__info">
                 <span><i class="far fa-user"></i>  {{$post->user ? $post->user->name : ''}}</span>
@@ -28,6 +22,12 @@
             @endif
 
             <div class="col-md-12 pd__content" id="pd-content">{{$post->content}}</div>
+
+            @if ($isOwn)
+                <div class="col-md-12 post-btn">
+                    <a href="{{route('posts.edit', ['id' => $post->id])}}" class="btn btn-primary">Edit</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

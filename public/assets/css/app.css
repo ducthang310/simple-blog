@@ -6,6 +6,12 @@ body {
   line-height: 1.6;
 }
 
+.btn-primary {
+  background-color: #0084bf;
+  -webkit-box-shadow: inset 0 0 0 1px #dee2e6, inset 0 0 0 2px transparent, inset 0 0 0 3px transparent;
+  box-shadow: inset 0 0 0 1px #dee2e6, inset 0 0 0 2px transparent, inset 0 0 0 3px transparent;
+}
+
 .btn-line {
   background-color: transparent;
   -webkit-box-shadow: inset 0 0 0 1px #dee2e6, inset 0 0 0 2px transparent, inset 0 0 0 3px transparent;
@@ -31,6 +37,26 @@ body {
   border-radius: 2px;
 }
 
+.form-control::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #e4e4e4;
+}
+
+.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #e4e4e4;
+}
+
+.form-control:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #e4e4e4;
+}
+
+.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: #e4e4e4;
+}
+
 .navbar-laravel {
   background-color: #343a40;
 }
@@ -50,6 +76,37 @@ body {
 
 .navbar-laravel .navbar-brand {
   color: red;
+}
+
+.navbar-laravel .navbar-toggler {
+  padding: 0;
+}
+
+.navbar-laravel .navbar-toggler:focus {
+  outline: none;
+}
+
+.navbar-laravel .navbar-toggler span:last-child {
+  margin-bottom: 0;
+}
+
+.navbar-laravel .navbar-toggler-icon {
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  margin-bottom: 6px;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-laravel .navbar-toggler {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
 
 .page-link {
@@ -75,6 +132,10 @@ body {
 .page-item.disabled .page-link {
   border-color: transparent;
   cursor: not-allowed;
+}
+
+.tooltip-txt {
+  color: #c6c6c6;
 }
 
 .posts__item {
@@ -166,10 +227,6 @@ body {
 }
 
 /*------------------------------------------------------------------------------------------------*/
-.pd__bar-right .btn {
-  float: right;
-}
-
 .pd__info {
   color: gray;
   margin-top: 20px;
@@ -196,10 +253,6 @@ body {
   opacity: 1;
 }
 
-.pc__bar {
-  margin-bottom: 30px;
-}
-
 .pc__preview {
   margin-top: 10px;
   padding: 10px;
@@ -215,7 +268,22 @@ body {
   border-bottom: 1px solid #e4e4e4;
 }
 
+.post-btn {
+  margin-top: 20px;
+}
+
+.post-form .form-group {
+  margin-top: 10px;
+}
+
+.post-form .form-group label {
+  color: gray;
+}
+
 @media only screen and (max-width: 768px) {
+  .posts__pagination {
+    margin-top: 20px;
+  }
   .posts__pagination .pagination {
     -webkit-box-pack: start;
     -ms-flex-pack: start;

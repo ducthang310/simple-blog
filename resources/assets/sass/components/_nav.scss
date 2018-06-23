@@ -21,4 +21,34 @@
   .navbar-brand {
     color: red;
   }
+
+  .navbar-toggler {
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    span {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .navbar-toggler-icon {
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    margin-bottom: 6px;
+  }
+}
+
+@include breakpoint(768) {
+  .navbar-laravel {
+    .navbar-toggler {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

@@ -1,3 +1,7 @@
+.btn-primary {
+  background-color: $primary-color;
+  box-shadow: inset 0 0 0 1px #dee2e6, inset 0 0 0 2px transparent, inset 0 0 0 3px transparent;
+}
 .btn-line {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px #dee2e6, inset 0 0 0 2px transparent, inset 0 0 0 3px transparent;
@@ -18,4 +22,19 @@
 
 .btn {
   border-radius: 2px;
+}
+
+.form-control {
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #e4e4e4;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: #e4e4e4
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: #e4e4e4
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: #e4e4e4
+  }
 }
