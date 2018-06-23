@@ -1,0 +1,33 @@
+.pagination {
+
+}
+
+
+.page-link {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: transparent;
+
+  &:hover {
+    border-color: #e4e4e4;
+    background-color: transparent;
+  }
+}
+
+
+.page-item {
+  margin: 0 2px;
+  &.active {
+    .page-link {
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  &.disabled {
+    .page-link {
+      border-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+}

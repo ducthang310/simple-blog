@@ -28,9 +28,26 @@
                 <textarea name="overview" class="form-control text-area" placeholder="Overview">{{old('overview')}}</textarea>
             </div>
             <div class="col-md-12 pc__content">
-                <textarea name="content" class="form-control text-area" placeholder="Type your idea...">{{old('content')}}</textarea>
+                <textarea name="content" class="form-control text-area" id="p-content" placeholder="Type your idea...">{{old('content')}}</textarea>
             </div>
 
         </div>
+
+        <div class="pc__preview">
+            <h4>Preview content</h4>
+            <div id="pc-preview"></div>
+        </div>
     </form>
 @endsection
+
+
+@push('footer-scripts')
+    <script>
+        $('#p-content').on('keyup', function () {
+            _app.updatePostPreview('p-content', 'pc-preview');
+        });
+
+        _app.updatePostPreview('p-content', 'pc-preview');
+
+    </script>
+@endpush

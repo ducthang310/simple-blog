@@ -70,7 +70,7 @@
 }
 .btn-approve {
   width: 100%;
-  color: #0084bf;
+  color: $primary-color;
   background-color: transparent;
   opacity: 0.8;
   border-radius: 0;
@@ -107,6 +107,12 @@
 
   &__conent {
     margin-top: 10px;
+    opacity: 0;
+    transition: opacity ease-out 0.2s;
+
+    &.active {
+      opacity: 1;
+    }
   }
 }
 
@@ -114,6 +120,21 @@
 .pc {
   &__bar {
     margin-bottom: 30px;
+  }
+
+  &__preview {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #e4e4e4;
+
+    h4 {
+      font-size: 20px;
+      margin-left: -10px;
+      margin-right: -10px;
+      padding: 0 10px 10px;
+      border-bottom: 1px solid #e4e4e4;
+    }
   }
 }
 

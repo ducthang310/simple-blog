@@ -27,10 +27,17 @@
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
 
-            <div class="col-md-12 pd__content">
-                {!! $post->content !!}
-            </div>
-
+            <div class="col-md-12 pd__content" id="pd-content">{{$post->content}}</div>
         </div>
     </div>
 @endsection
+
+
+@push('footer-scripts')
+    <script type="text/javascript" src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+    <script>
+        var converter = new showdown.Converter(),
+            html      = converter.makeHtml($('#pd-content').html());
+        $('#pd-content').html(html).addClass('active');
+    </script>
+@endpush

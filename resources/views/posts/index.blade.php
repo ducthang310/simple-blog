@@ -22,7 +22,7 @@
         <div class="col-sm-6 col-md-4 col-lg-3 posts__item">
             <div class="posts__item-wrap">
                 <div class="posts__img-wrap" style="{{$post->styles || ''}}">
-                    <button type="button" class="btn btn-preview" data-id="{{$post->id}}" data-toggle="modal" data-target="#preview-modal">Preview</button>
+                    <button type="button" class="btn btn-preview" data-id="{{$post->id}}">Preview</button>
                 </div>
                 <div class="posts__title">
                     <a href="{{route('posts.show', ['id' => $post->id])}}">{{$post->title}}</a>
@@ -42,19 +42,16 @@
 
 
     <!------ Preview ------------>
-    <div class="modal fade modal-preview" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade modal-preview pv" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="pv-body" class="modal-body">
-                    <div class="pv__top">
-                        <div class="col-md-3">
-
-                        </div>
-                        <div class="col-md-9">
-                            <h4 id="pv-title"></h4>
-                            <p id="pv-sub" class="pv__sub"></p>
-                        </div>
-                    </div>
+                    <h5 id="pv-title" class="pv__title"></h5>
+                    <p id="pv-sub" class="pv__sub">
+                        <i class="far fa-user"></i><span id="pv-author"></span><br/>
+                        <i class="far fa-calendar-alt"></i><span id="pv-updated-at"></span><br/>
+                        <i class="far fa-calendar-alt"></i><span id="pv-created-at"></span>
+                    </p>
 
                     <div id="pv-content" class="pv__content"></div>
 
@@ -63,7 +60,7 @@
                 <div id="pv-error" class="pv__error">Can not load post data</div>
 
                 <div id="pv-loading" class="pv__loading">
-
+                    <i class="fa fa-spinner fa-spin"></i>
                 </div>
             </div>
         </div>
@@ -76,9 +73,11 @@
         var previewUrl = "{{route('posts.json', ['id' => 'post_id'])}}";
 
         $(document).ready(function () {
-            $('#preview-modal').on('show.bs.modal', function (event) {
-                var postId = $('.btn-preview').attr('data-id');
+            $('.btn-preview').click(function () {
+                var postId = $(this).attr('data-id');
                 var url = previewUrl.replace('post_id', postId);
+
+                $('#preview-modal').modal('show');
                 $('#pv-loading').show();
                 $.ajax({
                     url: url,
@@ -90,12 +89,10 @@
                     .done(function( data ) {
                         if (data && data.success && data.post) {
                             $('#pv-title').html(data.post.title);
-                            $('#pv-sub').html(
-                                '<span><i class="far fa-user"></i>  ' + (data.post.user ? data.post.user.name : 'No name') + '}}</span>\n' +
-                                '<span><i class="far fa-calendar-alt"></i>  Updated at: ' + data.post.updated_at + '</span>\n' +
-                                '<span><i class="far fa-calendar-alt"></i>  Created at: ' + data.post.created_at + '</span>'
-                            );
-                            $('#pv-content').html(data.post.content);
+                            $('#pv-author').html(data.post.user.name);
+                            $('#pv-updated-at').html(data.post.updated_at);
+                            $('#pv-created-at').html(data.post.created_at);
+                            $('#pv-content').html(_app.textToMD(data.post.content));
                             pvShowPost()
                         } else {
                             pvShowError();

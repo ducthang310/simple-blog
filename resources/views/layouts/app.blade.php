@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -35,11 +35,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">{{ __('Post') }}</a>
+                        <li class="nav-item {{Route::currentRouteName() === 'posts.index' ? 'active': ''}}">
+                            <a class="nav-link" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
                         </li>
                         @if (Auth::check() && Auth::user()->type === 0)
-                        <li class="nav-item">
+                        <li class="nav-item {{Route::currentRouteName() === 'posts.pending' ? 'active': ''}}">
                             <a class="nav-link" href="{{ route('posts.pending') }}">{{ __('Pending post') }}</a>
                         </li>
                         @endif
@@ -49,10 +49,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <li class="nav-item {{Route::currentRouteName() === 'login' ? 'active': ''}}">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item {{Route::currentRouteName() === 'register' ? 'active': ''}}">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @else
@@ -88,6 +88,7 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
 
     @stack('footer-scripts')
