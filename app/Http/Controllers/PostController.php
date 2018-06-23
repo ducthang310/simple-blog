@@ -139,6 +139,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if ($post->user_id !== Auth::id()) {
+            $request->session()->flash('message', 'You have no permission to update this post.');
+
+            return redirect()->route('posts.edit', ['id' => $post->id]);
+        }
+
         $postData = $request->all();
 
         $post->fill($postData)->save();
