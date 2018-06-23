@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const TYPE_ADMIN = 0;
+    const TYPE_MEMBER = 1;
+
     use Notifiable;
 
     /**

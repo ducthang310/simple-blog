@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -106,7 +107,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post $post
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -122,7 +123,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post $post
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -134,7 +135,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Post $post
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -157,7 +158,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post $post
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
@@ -191,5 +192,36 @@ class PostController extends Controller
             'success' => false,
             'post' => null
         ]);
+    }
+
+    /**
+     * Approved a post.
+     *
+     * @param  \App\Models\Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(Request $request)
+    {
+        $currentUser = Auth::user();
+        if ($currentUser->type !== User::TYPE_ADMIN) {
+            $request->session()->flash('message', 'You have no permission to approve this post.');
+
+            return redirect()->route('posts.index');
+        }
+        try {
+            if ($id = $request->route('id')) {
+                $post = Post::where('id', $id)
+                    ->firstOrFail();
+
+                $post->status = Post::STATUS_APPROVED;
+                $post->save();
+                $request->session()->flash('message', 'The post has been approved.');
+            }
+
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());die;
+        }
+
+        return redirect()->route('posts.index');
     }
 }

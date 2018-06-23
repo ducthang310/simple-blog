@@ -13,13 +13,13 @@
 
 Auth::routes();
 
-Route::get('/', 'PostController@index')->name('home');
-Route::get('/home', 'PostController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => '/posts'], function () {
     Route::get('/pending', 'PostController@pending')->name('posts.pending');
     Route::get('/json/{id}', 'PostController@json')->name('posts.json');
-//    Route::match(['post'], '/json/{id}', 'PostController@json')->name('posts.json');
+    Route::post('/approve/{id}', 'PostController@approve')->name('posts.approve');
 });
 Route::resources([
     'posts' => 'PostController'

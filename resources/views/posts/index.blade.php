@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
         <!-- will be used to show any messages -->
         @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
+            <div class=" col-md-12 alert alert-info">{{ Session::get('message') }}</div>
         @endif
 
         @foreach($posts as $post)
@@ -32,7 +32,10 @@
                 </div>
                 @if (Route::currentRouteName() === 'posts.pending')
                 <div class="posts__btn">
-                    <button type="button" class="btn btn-approve">Approve</button>
+                    <form method="post" action="{{ route('posts.approve', ['id' => $post->id]) }}">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-approve">Approve</button>
+                    </form>
                 </div>
                 @endif
             </div>
